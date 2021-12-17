@@ -149,7 +149,7 @@ def inverse_furie_transform(byte_channel, phase, amplitude):
 def main():
     option = st.sidebar.radio(
         'Choose option',
-        ('Encrypt', 'Decrypt'))
+        ('Embed', 'Extract'))
 
     st.sidebar.title("Algorithm parameters")
 
@@ -160,8 +160,8 @@ def main():
     eps = 1e-1
     block_len = m * k * 8 * 2 + 1  # for 1 byte
 
-    if   option == 'Encrypt': encrypt(m, k, delta_pi, noise_eps, eps, block_len)
-    elif option == 'Decrypt': decrypt(m, k, delta_pi, noise_eps, eps, block_len)
+    if   option == 'Embed': encrypt(m, k, delta_pi, noise_eps, eps, block_len)
+    elif option == 'Extract': decrypt(m, k, delta_pi, noise_eps, eps, block_len)
 
 def encrypt(m, k, delta_pi, noise_eps, eps, block_len):
     st.title("Embed the message into audio")
@@ -249,7 +249,7 @@ def encrypt(m, k, delta_pi, noise_eps, eps, block_len):
     st.download_button('Download result file', data = f, file_name=f"{wav_file_name}_enc.wav")
 
 def decrypt(m, k, delta_pi, noise_eps, eps, block_len):
-    st.title("Extracte the message from audio")
+    st.title("Extract the message from audio")
 
     st.title("Wav file")
     wav_file = st.file_uploader("Choose a wav file", key ="2")
